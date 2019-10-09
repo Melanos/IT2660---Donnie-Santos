@@ -1,4 +1,5 @@
-class SinglyLinkedList {
+class SinglyLinkedList
+{
 
     private Node h;
 
