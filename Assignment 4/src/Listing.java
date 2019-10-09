@@ -32,14 +32,13 @@ public class Listing {
     }
 
     void input() {
-        Scanner intM = new Scanner(System.in);
-        Scanner StringM = new Scanner(System.in);
+        Scanner job = new Scanner(System.in);
         System.out.println(" Enter a name ");
-        name = StringM.nextLine();
+        name = job.nextLine();
         System.out.println(" Enter student ID: ");
-        number = intM.nextLine();
+        number = job.nextLine();
         System.out.println(" Enter student street address: ");
-        address = intM.nextLine();
+        address = job.nextLine();
     }
     public static void main(String[] args) {
         StudentList student = new StudentList();
