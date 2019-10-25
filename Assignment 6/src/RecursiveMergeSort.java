@@ -1,27 +1,27 @@
 class RecursiveMergeSort
 {
-    void TopDownMergeSort(int[] mainArray, int[] copyArray) // mainArray, copyArray, int n
+    void topDownMergeSort(int[] mainArray, int[] copyArray)
     {
         CopyArray(mainArray, copyArray);
-        Split(copyArray, 0, 100, mainArray);
+        split(copyArray, 0, 100, mainArray);
     }
 
-    private void Split(int[] copyArray, int start, int end, int[] mainArray)
+    private void split(int[] copyArray, int start, int end, int[] mainArray)
     {
         if(end - start < 2)
         {
             return;
         }
         int middle = (end + start) / 2;
-        Split(mainArray, start, middle, copyArray);
-        Split(mainArray, start, end, copyArray);
-        CombineArray(copyArray, start, middle, end, mainArray);
+        split(mainArray, start, middle, copyArray);
+        split(mainArray, middle, end, copyArray);
+        combineArray(copyArray, start, middle, end, mainArray);
     }
 
-    private void CombineArray(int[] mainArray, int start, int middle, int end, int[] copyArray)
+    private void combineArray(int[] mainArray, int start, int middle, int end, int[] copyArray)
     {
-        int s = start; //a
-        int m = middle; //b
+        int s = start;
+        int m = middle;
 
         for (int i = start; i < end; i++)
         {
@@ -36,7 +36,6 @@ class RecursiveMergeSort
                         m = m + 1;
             }
         }
-
     }
 
     private void CopyArray(int[] mainArray, int[] copyArray)
@@ -44,21 +43,20 @@ class RecursiveMergeSort
         System.arraycopy(mainArray, 0, copyArray, 0, 100);
     }
 
-    void UnsortedArray(int[] unsortedArray)
+    void unsortedArray(int[] unsortedArray)
     {
         for(int i = 0; i < unsortedArray.length; i++)
         {
-            int random = (int)Math.floor(Math.random() * 101) ;
+            int random = (int)Math.floor(Math.random()*100);
             unsortedArray[i] = random;
-            System.out.println("\t" + i + unsortedArray[i]);
+            System.out.println("\t" + unsortedArray[i]);
         }
     }
 
-    void SortedArray(int[] unsortedArray)
+    void sortedArray(int[] unsortedArray)
     {
-        for(int i = 0; i < unsortedArray.length; i++)
-        {
-            System.out.println("\t: " + i + unsortedArray[i]);
+        for (int value : unsortedArray) {
+            System.out.println("\t" + value);
         }
     }
 }

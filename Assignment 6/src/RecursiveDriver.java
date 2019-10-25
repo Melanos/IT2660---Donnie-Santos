@@ -9,9 +9,9 @@ public class RecursiveDriver
 
         RecursiveMergeSort test = new RecursiveMergeSort();
         System.out.println("Unsorted Array:");
-        test.UnsortedArray(randomNumbers);
+        test.unsortedArray(randomNumbers);
         System.out.println("Sorted Array");
-        test.TopDownMergeSort(randomNumbers, sorted);
-        test.SortedArray(randomNumbers);
+        test.topDownMergeSort(randomNumbers, sorted);
+        test.sortedArray(randomNumbers);
     }
 }
