@@ -28,7 +28,8 @@ class Binary_Tree
                         return;
                     }
                 }
-                else {
+                else
+                    {
                     nodeOfFocus = nodeOfFocus.rightChild;
                     if (nodeOfFocus == null)
                     {
@@ -54,33 +55,35 @@ class Binary_Tree
             {
                 isThisALeftChild = true;
                 nodeOfFocus = nodeOfFocus.leftChild;
-            } else {
+            }
+            else
+                {
                 isThisALeftChild = false;
                 nodeOfFocus = nodeOfFocus.rightChild;
-            }
+                }
             if (nodeOfFocus == null)
                 return false;
-        }
-        if (nodeOfFocus.leftChild == null && nodeOfFocus.rightChild == null)
-        {
+            }
+            if (nodeOfFocus.leftChild == null && nodeOfFocus.rightChild == null)
+            {
             if (nodeOfFocus == root)
                 root = null;
             else if (isThisALeftChild)
                 parent.leftChild = null;
             else
                 parent.rightChild = null;
-        }
-        else if (nodeOfFocus.rightChild == null)
-        {
+            }
+            else if (nodeOfFocus.rightChild == null)
+            {
             if (nodeOfFocus == root)
                 root = nodeOfFocus.leftChild;
             else if (isThisALeftChild)
                 parent.leftChild = nodeOfFocus.leftChild;
             else
                 parent.rightChild = nodeOfFocus.leftChild;
-        }
-        else if (nodeOfFocus.leftChild == null)
-        {
+            }
+            else if (nodeOfFocus.leftChild == null)
+            {
             if (nodeOfFocus == root)
             {
                 root = nodeOfFocus.rightChild;
@@ -93,8 +96,8 @@ class Binary_Tree
                 {
                 parent.rightChild = nodeOfFocus.rightChild;
             }
-        }
-        else
+            }
+            else
             {
             Node replacementNode = getReplacementNode(nodeOfFocus);
             if (nodeOfFocus == root)
