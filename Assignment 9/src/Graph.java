@@ -76,7 +76,7 @@ class Graph
         }
     }
 
-    private void Dijkstra(int firstVertex)
+    private void dijkstra(int firstVertex)
     {
         int v;
         LinkedList<Integer> nodeQueue = new LinkedList<>();
@@ -141,7 +141,7 @@ class Graph
         System.out.println();
     }
 
-    void InitializeNodes(Graph G, int nodesNum)
+    void initializeNodes(Graph G, int nodesNum)
     {
         Random random = new Random();
         for (int i = 0; i < nodesNum; i++ )
@@ -169,7 +169,7 @@ class Graph
 
     }
 
-    int Search()
+    int search()
     {
         String search = JOptionPane.showInputDialog("Enter Node to search:");
         try
@@ -186,7 +186,7 @@ class Graph
         return selectNum;
     }
 
-    private int SelectPane()
+    private int selectPane()
     {
         String paneSelect = JOptionPane.showInputDialog("Choose a search method:" +
                 "\n\t1: Use Depth-First Search" +
@@ -212,7 +212,7 @@ class Graph
         int paneNum = 0;
         while (paneNum != 4)
         {
-            paneNum = SelectPane();
+            paneNum = selectPane();
             switch (paneNum)
             {
                 case 1:
@@ -226,7 +226,7 @@ class Graph
                     System.out.println("------------------------------------");
                     break;
                 case 3:
-                    graph.Dijkstra(vertexStart);
+                    graph.dijkstra(vertexStart);
                     System.out.println("Nodes counted were: " + nodeCheck);
                     System.out.println("------------------------------------");
                     break;

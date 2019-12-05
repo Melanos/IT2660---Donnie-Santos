@@ -4,7 +4,7 @@ public class Driver
     {
         int nodesNum = 30000; //Can go up to 30k nodes, otherwise causes memory leak.
         Graph graph = new Graph(nodesNum);
-        graph.InitializeNodes(graph, nodesNum);
+        graph.initializeNodes(graph, nodesNum);
 
         for(int i = 0; i<5; i++)
         {
@@ -14,7 +14,7 @@ public class Driver
             graph.showEdges(i);
         }
 
-        int select = graph.Search();
+        int select = graph.search();
         graph.algorithmChoice(graph, select);
     }
 }
