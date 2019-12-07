@@ -4,7 +4,7 @@ import javax.swing.JOptionPane;
 class Graph
 {
     private Listing[] vertex;
-    private int[][] edge;
+    private final Set<Edge> edges = new HashSet<>();
     private int max;
     private int numberOfVertices;
     private int nodeCheck = 0;
@@ -13,10 +13,18 @@ class Graph
     Graph(int g)
     {
         vertex = new Listing[g];
-        edge = new int[g][g];
+        //edge = new int[g][g];
         max = g;
         numberOfVertices = 0;
     }
+
+    private void insertEdge(int fromVertex, int toVertex)
+    {
+        if(vertex[fromVertex] == null || vertex[toVertex] == null)
+            return;
+        edges.add(new Edge(fromVertex, toVertex));
+    }
+
     private void depthFirstSearch(int firstVertex)
     {
         int v;
@@ -39,7 +47,7 @@ class Graph
             for (int column = 0; column < numberOfVertices; column++)
             {
 
-                if(edge[v][column] == 1 && vertex[column].getPushed())
+                if( isEdgeBetween(v,column) && vertex[column].getPushed())
                 {
                     nodeStack.push(column);
                     vertex[column].setPushed(true);
@@ -67,13 +75,22 @@ class Graph
             nodeCheck++;
             for(int column = 0; column < numberOfVertices; column++)
             {
-                if(edge[V][column] == 1 && vertex[column].getPushed())
+                if( isEdgeBetween(V,column) && vertex[column].getPushed())
                 {
                     nodeQueue.add(column);
                     vertex[column].setPushed(true);
                 }
             }
         }
+    }
+
+    private boolean isEdgeBetween(int fromVertex, int toVertex)
+    {
+        for(Edge edge : edges){
+            if(edge.connects(fromVertex, toVertex)) return true;
+        }
+
+        return false;
     }
 
     private void dijkstra(int firstVertex)
@@ -98,12 +115,35 @@ class Graph
             nodeCheck++;
             for(int column = 0; column < numberOfVertices; column++)
             {
-                if(edge[v][column] == 1 && vertex[column].getPushed())
+                if( isEdgeBetween(v,column) && vertex[column].getPushed())
                 {
                     nodeQueue.add(column);
                     vertex[column].setPushed(true);
                 }
             }
+        }
+    }
+
+    class Edge{
+
+        private final int fromVertex, toVertex;
+
+        Edge(int fromVertex, int toVertex){
+            this.fromVertex = fromVertex;
+            this.toVertex = toVertex;
+        }
+
+        @Override
+        public boolean equals(Object obj)
+        {
+            if( ! (obj instanceof Edge)) return false;
+            Edge other = (Edge)obj;
+            return connects(other.fromVertex, other.toVertex);
+        }
+
+        boolean connects(int fromVertex, int toVertex){
+            return fromVertex == this.fromVertex && toVertex == this.toVertex ||
+                    fromVertex == this.toVertex && toVertex == this.fromVertex;
         }
     }
 
