@@ -124,7 +124,7 @@ class Graph
         }
     }
 
-    class Edge{
+    static class Edge{
 
         private final int fromVertex, toVertex;
 
@@ -155,13 +155,6 @@ class Graph
         }
         vertex[vertexNumber] = newListing.deepCopy();
         numberOfVertices++;
-    }
-
-    private void insertEdge(int fromVertex, int toVertex)
-    {
-        if(vertex[fromVertex] == null || vertex[toVertex] == null)
-            return;
-        edge[fromVertex][toVertex] = 1;
     }
 
     void showVertex(int vertexNumber)
