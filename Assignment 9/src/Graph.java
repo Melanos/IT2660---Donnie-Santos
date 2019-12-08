@@ -9,6 +9,7 @@ class Graph
     private int numberOfVertices;
     private int nodeCheck = 0;
     private int selectNum = 0;
+    
 
     Graph(int g)
     {
@@ -16,13 +17,6 @@ class Graph
         //edge = new int[g][g];
         max = g;
         numberOfVertices = 0;
-    }
-
-    private void insertEdge(int fromVertex, int toVertex)
-    {
-        if(vertex[fromVertex] == null || vertex[toVertex] == null)
-            return;
-        edges.add(new Edge(fromVertex, toVertex));
     }
 
     private void depthFirstSearch(int firstVertex)
@@ -124,28 +118,25 @@ class Graph
         }
     }
 
-    static class Edge{
-
-        private final int fromVertex, toVertex;
-
-        Edge(int fromVertex, int toVertex){
-            this.fromVertex = fromVertex;
-            this.toVertex = toVertex;
-        }
-
-        @Override
-        public boolean equals(Object obj)
-        {
-            if( ! (obj instanceof Edge)) return false;
-            Edge other = (Edge)obj;
-            return connects(other.fromVertex, other.toVertex);
-        }
-
-        boolean connects(int fromVertex, int toVertex){
-            return fromVertex == this.fromVertex && toVertex == this.toVertex ||
-                    fromVertex == this.toVertex && toVertex == this.fromVertex;
-        }
+    private void insertEdge(int fromVertex, int toVertex)
+    {
+        if(vertex[fromVertex] == null || vertex[toVertex] == null)
+            return;
+        edges.add(new Edge(fromVertex, toVertex));
     }
+
+    void showEdges(int vertexNumber)
+    {
+        for(int column = 0; column < numberOfVertices; column++)
+        {
+            if(isEdgeBetween(vertexNumber,column))
+            {
+                System.out.println(vertexNumber + "," + column);
+            }
+        }
+        System.out.println();
+    }
+
 
     private void insertVertex(int vertexNumber, Listing newListing)
     {
@@ -162,16 +153,27 @@ class Graph
         System.out.print(vertex[vertexNumber]);
     }
 
-    void showEdges(int vertexNumber)
-    {
-        for(int column = 0; column < numberOfVertices; column++)
-        {
-            if(edge[vertexNumber][column] == 1)
-            {
-                System.out.println(vertexNumber + "," + column);
-            }
+    static class Edge{
+
+        private final int fromVertex, toVertex;
+
+        Edge(int fromVertex, int toVertex){
+            this.fromVertex = fromVertex;
+            this.toVertex = toVertex;
         }
-        System.out.println();
+
+        //@Override
+        public boolean equals(Object obj)
+        {
+            if( ! (obj instanceof Edge)) return false;
+            Edge other = (Edge)obj;
+            return connects(other.fromVertex, other.toVertex);
+        }
+
+        boolean connects(int fromVertex, int toVertex){
+            return fromVertex == this.fromVertex && toVertex == this.toVertex ||
+                    fromVertex == this.toVertex && toVertex == this.fromVertex;
+        }
     }
 
     void initializeNodes(Graph G, int nodesNum)

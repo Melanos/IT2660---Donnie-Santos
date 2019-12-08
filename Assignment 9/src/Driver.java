@@ -2,7 +2,7 @@ public class Driver
 {
     public static void main(String[] args)
     {
-        int nodesNum = 30000; //Can go up to 30k nodes, otherwise causes memory leak.
+        int nodesNum = 30000; //Can go up to 30k nodes, since its a huge matrix, it causes a memory leak.
         Graph graph = new Graph(nodesNum);
         graph.initializeNodes(graph, nodesNum);
 
